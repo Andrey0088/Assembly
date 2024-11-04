@@ -1,0 +1,70 @@
+Linha 17-18:
+    push rbp
+    mov rbp, rsp
+
+    Essas instruções salvam o valor do ponteiro de base anterior (rbp) e configuram um novo quadro de pilha para a função. Isso faz parte da configuração padrão da pilha no início de uma função.
+
+Linha 20-22:
+
+mov rdi, str0
+mov rax, 0
+call printf
+
+Essas linhas preparam e chamam o printf para exibir a mensagem "Entre um inteiro:". A mensagem é armazenada na variável str0, e rdi precisa conter o endereço dessa string para o printf. O registro rax é definido como 0 antes de chamar o printf por uma questão de compatibilidade com convenções de chamada.
+
+Linha 24-26:
+
+mov rdi, fmt
+mov rsi, n
+call scanf
+
+Aqui, o programa está chamando scanf para ler um número inteiro inserido pelo usuário. fmt contém o formato "%d", e n é o endereço onde o valor lido será armazenado. Assim, o valor digitado pelo usuário será salvo na variável n.
+
+
+Linha 29-31:
+
+mov ecx, [n]
+shr ecx, 1
+jc else
+
+Nessa parte, o código está verificando se o número é par ou ímpar. Primeiramente, ele move o valor de n para ecx. Em seguida, utiliza a instrução shr ecx, 1, que desloca o valor de ecx uma posição à direita. Esse deslocamento divide o valor por 2, e o bit de menor valor indicará se o número é par ou ímpar. Se o bit de menor valor for 1, o número é ímpar, caso contrário, é par.
+
+A instrução jc else verifica se há um "carry" (sinalizador de transporte) após o deslocamento. Se houver, significa que o número é ímpar, e o programa pula para o rótulo else.
+
+
+Linha 33-36 (Bloco Par):
+
+mov rdi, par
+mov rax, 0
+call printf
+jmp fim_else
+
+Se o número for par, o programa executa essas linhas. Ele carrega o endereço da string par em rdi, define rax como 0 e chama printf para exibir a palavra "par". Em seguida, salta para o rótulo fim_else para evitar executar o bloco else.
+
+Linha 38-41 (Bloco Ímpar):
+
+mov rdi, impar
+mov rax, 0
+call printf
+
+Esse é o bloco que será executado se o número for ímpar. Aqui, o endereço da string impar é carregado em rdi, rax é definido como 0, e printf é chamado para exibir a palavra "impar".
+
+Linha 43-47 (Finalização):
+
+fim_else:
+mov rsp, rbp
+pop rbp
+mov rax, 0
+ret
+
+
+Este é o fim da função main. A pilha é restaurada para o estado original ao mover rbp para rsp e, em seguida, rbp é restaurado. rax é definido como 0 para indicar sucesso, e ret retorna da função.
+
+Resumo
+Este código pede ao usuário para inserir um número, verifica se é par ou ímpar usando um deslocamento de bits e um teste de "carry flag" (jc), e exibe "par" ou "impar" conforme o caso.
+
+
+
+
+
+

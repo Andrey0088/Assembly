@@ -1,0 +1,19 @@
+extern printf
+extern scanf
+
+    .section bss
+
+
+    .secton data
+a:  dd 1
+b:  dd 1
+str0 db "Escreva um numero: "
+
+    .secton text
+
+MOV RDI, str0
+MOV RAX, 0
+CALL PRINTF
+
+ret
+

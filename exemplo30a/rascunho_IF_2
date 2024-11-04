@@ -1,0 +1,45 @@
+            ; if (*str1ptr == *str2ptr ) // if_2
+     IF_2: 
+        ; *str1ptr == *str2ptr 
+        mov rcx, [str1ptr] ; o conteudo de str1ptr eh um endereco
+        xor  rax, rax ; zera todo o rax , pois al eh parte de rax
+        mov  al , [rcx] ; peguei o conteudo do endereco str1ptr
+        ; al = *str1ptr
+        mov rcx, [str2ptr]
+        xor rbx, rbx ; por que zerar o rbx? ==> pra debug
+        mov bl , [rcx] 
+        ; bl = *str2ptr
+        cmp al,bl
+        jne  ELSE_2
+         ;  corpo do if
+        ; printf ("Entrei no if 3: %x %x \n", str1ptr , str2ptr);
+         mov rdi, str7
+         mov rsi, [str1ptr]
+         mov rdx, [str2ptr]
+         mov rax,0
+        call printf 
+
+      ;   str1ptr++;
+       ; str2ptr++;
+      
+        mov rcx, [str1ptr]
+        inc rcx
+        mov [str1ptr], rcx ; 64 bits
+     
+         mov rcx, [str2ptr]
+         inc rcx
+         mov [str2ptr], rcx ;
+        jmp FIM_IF_2
+     ELSE_2
+         ; corpo do else 
+         mov rdi, str8
+         mov rax, 0
+         call printf
+
+         mov  eax,0
+         mov [iguais], eax
+
+     FIM_IF_2:
+
+
+         

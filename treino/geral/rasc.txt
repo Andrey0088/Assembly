@@ -1,0 +1,15 @@
+set projectName=helloworld
+\masm32\bin\ml /c /Zd /coff %helloworld%.asm
+\masm32\bin\Link /SUBSYSTEM:CONSOLE %helloworld%.obj
+%helloworld%.exe
+
+
+
+
+\masm32\bin\ml /c /Zd /coff lerEPrintar2.asm
+\masm32\bin\link /SUBSYSTEM:CONSOLE lerEPrintar2.obj
+./lerEPrintar2.exe
+
+
+nasm -f win64 -o lerEPrintar2.obj lerEPrintar2.asm
+ld -o lerEPrintar2.exe lerEPrintar2.obj "C:\msys64\ucrt64\lib\libkernel32.a" "C:\msys64\ucrt64\lib\libmsvcrt.a"

@@ -1,0 +1,12 @@
+kate  floats1.asm &
+
+nasm -f elf64 -F dwarf floats1.asm
+
+ls -la
+
+gcc floats1.o -o floats1 -fno-pie -no-pie
+
+
+ls
+
+./floats1
